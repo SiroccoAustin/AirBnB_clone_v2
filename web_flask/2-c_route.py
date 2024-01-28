@@ -13,7 +13,7 @@ def greet_hbnb():
 def another_page():
     """Displays 'HBNB'."""
     return "HBNB"
-@app.route('/<text>', strict_slashes=False)
+@app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
     """Displays 'C' followed by the value of <text>."""
     return 'C {}'.format(text.replace('_', ' '))
