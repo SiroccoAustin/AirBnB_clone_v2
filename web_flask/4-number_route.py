@@ -25,7 +25,7 @@ def python_text(text="is cool"):
     """Displays 'Python' followed by the value of <text>."""
     return 'Python {}'.format(text.replace('_', ' '))
 
-@app.route('/number/<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def display_number(n):
     """Displays 'Python' followed by the value of <text>."""
     return "{} is a number".format(n)
