@@ -19,4 +19,4 @@ def closedown(exe):
     return storage.close()
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', host=5000)
+    app.run(host='0.0.0.0', port=5000)
