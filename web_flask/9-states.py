@@ -3,6 +3,7 @@
 from models import storage
 from flask import Flask
 from flask import render_template
+from models.state import State
 
 app = Flask(__name__)
 
@@ -15,10 +16,8 @@ def states():
 @app.route('/states/<id>', strict_slashes=False)
 def state_id(id):
     """Displays an HTML page with info about <id>"""
-    for state in storage.all("State")
-        if state.id == id:
-            return render_template("9-states.html", state=state)
-    return render_template("9-states.html")
+    state = storage.get(State, id)
+    return render_template("9-states.html", state=state)
 
 
 
