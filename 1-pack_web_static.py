@@ -1,18 +1,19 @@
 #!/usr/bin/python3
 """compress before sending the file"""
 
-from fabric import task
+from datetime import datetime
+from fabric.api import local
+from os.path import isdir
 
-@task
 def do_pack():
     """create a archive file"""
-    date = datetime.utcnow()
-    archive_file = "versions/web_static_{}{}{}{}{}{}.tgz".format(date.year, date.month, date.day, date.hour, date.minute, date.second)
-
-    if os.path.isdir("versions") is False:
-        if local("mkdir -p versions").failed is True:
-            return None
-    if local("tar -cvzf {} web_static".format(archive_file)).failed is True:
+    try:
+        date = datetime.now().strftime("%Y%m%d%H%M%S")
+        if isdir("versions") is False:
+            local("mkdir versions")
+        file_name = "versions/web_static_{}.tgz".format(date)
+        local("tar -cvzf {} web_static".format(file_name))
+        return file_name
+    except:
         return None
-    return archive_file
 
